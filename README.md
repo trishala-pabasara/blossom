@@ -3,6 +3,10 @@
 A simple and realable. e-commerce site.<br>
 Currently the work is in progress. stay tuned.
 
+### Preview
+
+https://github.com/user-attachments/assets/743dc7c7-7594-4c07-94c3-c7ad204e6e63
+
 ### Setting Up
 
 1. Download and install xampp. And start the apache server and phpMyAdmin

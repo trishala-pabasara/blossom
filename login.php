@@ -15,9 +15,16 @@ if(isset($_POST['login'])){
         echo "Login Failed";
     }
 }
-$pageTitle = 'Admin Login';
-include 'includes/header.php';
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+</head>
+<body>
 
 <h1>Admin Login 🔐</h1>
 
@@ -31,5 +38,6 @@ include 'includes/header.php';
     <button type="submit" name="login">Login</button>
 </form>
 
-<?php include 'includes/footer.php'; ?>
+</body>
+</html>
 

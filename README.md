@@ -1,9 +1,9 @@
-### BLOSSOM
+# BLOSSOM
 
 A simple and realable. e-commerce site.<br>
 Currently the work is in progress. stay tuned.
 
-## Setting Up
+### Setting Up
 
 1. Download and install xampp. And start the apache server and phpMyAdmin
 2. download this repository to the xampp/htdocs folder.

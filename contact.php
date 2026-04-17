@@ -27,7 +27,7 @@ if(isset($_POST['send'])){
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="products.php">Products</a>
-    <a href="gallery.html">Gallery</a>
+    <a href="gallery.php">Gallery</a>
     <a href="contact.php">Contact</a>
     <a href="login.php">Login</a>
 </nav>

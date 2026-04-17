@@ -88,6 +88,42 @@ if(isset($_POST['bulk_delete']) && isset($_POST['delete_id'])){
         <button onclick="showForm()">Add Product</button>
         <button onclick="showEdit()">Edit Product</button>
         <button onclick="showDelete()">Delete Product</button>
+        <h2>Manage Gallery</h2>
+        <button onclick="showMGallery()">Edit Gallery</button>
+    </div>
+
+    <div id="gallery-container" style="display:none;">
+        <h2>Gallery Management</h2>
+
+        <div>
+            <button type="button" onclick="document.getElementById('imageInput').click()">Upload Image</button>
+            <button type="button" onclick="removeSelected()">Remove Images</button>
+        </div>
+
+        <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="handleUpload(event)">
+
+        <form method="POST" action="gallery_handler.php">
+            <div id="galleryContainer" style="margin-top:15px; display:flex; flex-wrap:wrap; gap:10px;">
+                <?php
+                $dir = "uploads/";
+                if (is_dir($dir)) {
+                    $files = array_diff(scandir($dir), array('.', '..'));
+
+                    foreach ($files as $file) {
+                        echo '
+                        <div style="position:relative;">
+                            <input type="checkbox" name="delete_images[]" value="'.$file.'" style="position:absolute; top:5px; left:5px;">
+                            <img src="uploads/'.$file.'" width="120" height="120" style="object-fit:cover; border:1px solid #ccc;">
+                        </div>';
+                    }
+                }
+                ?>
+            </div>
+            <input type="hidden" name="new_images" id="new_images">
+
+            <br>
+            <button type="submit" onclick="prepareSubmit()">Submit</button>
+        </form>
     </div>
 
     <div id="form-container" style="display: none;">
@@ -152,6 +188,63 @@ if(isset($_POST['bulk_delete']) && isset($_POST['delete_id'])){
 </div>
 
 <script>
+    let newImages = [];
+
+    function handleUpload(event) {
+        const input = event.target;
+        const files = input.files;
+
+        for (let file of files) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                newImages.push(e.target.result);
+                addImageToUI(e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        input.value = "";
+    }
+
+    function addImageToUI(src) {
+        const container = document.getElementById('galleryContainer');
+
+        const div = document.createElement("div");
+        div.style.position = "relative";
+
+        div.innerHTML = `
+            <input type="checkbox" class="new-image" data-src="${src}" style="position:absolute; top:5px; left:5px;">
+            <img src="${src}" width="120" height="120" style="object-fit:cover; border:1px solid #ccc;">
+        `;
+
+        container.appendChild(div);
+    }
+
+    function removeSelected() {
+        const checkboxes = document.querySelectorAll('#galleryContainer input[type="checkbox"]:checked');
+
+        checkboxes.forEach(cb => {
+            if (cb.classList.contains("new-image")) {
+                const src = cb.dataset.src;
+                newImages = newImages.filter(img => img !== src);
+                cb.parentElement.remove();
+            } else {
+                cb.parentElement.style.opacity = "0.5";
+            }
+        });
+    }
+
+    function prepareSubmit() {
+        document.getElementById('new_images').value = JSON.stringify(newImages);
+    }
+    
+    function showMGallery() {
+        hideAll();
+        document.getElementById('menu-container').style.display = 'none';
+        document.getElementById('gallery-container').style.display = 'block';
+    }
     function showForm() {
         hideAll();
         document.getElementById('menu-container').style.display = 'none';
@@ -175,6 +268,7 @@ if(isset($_POST['bulk_delete']) && isset($_POST['delete_id'])){
         document.getElementById('form-container').style.display = 'none';
         document.getElementById('edit-container').style.display = 'none';
         document.getElementById('delete-container').style.display = 'none';
+        document.getElementById('gallery-container').style.display = 'none';
     }
     function toggleSelectAll(source) {
         const checkboxes = document.querySelectorAll('.item-checkbox');

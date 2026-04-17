@@ -49,16 +49,21 @@
 $dir = "uploads/";
 
 if (is_dir($dir)) {
+
     $files = array_diff(scandir($dir), array('.', '..'));
 
-    foreach ($files as $file) {
-        echo '<img src="uploads/'.$file.'">';
+    if (empty($files)) {
+        echo "<p>No images yet.</p>";
+    } else {
+        foreach ($files as $file) {
+            echo '<img src="uploads/'.$file.'">';
+        }
     }
+
 } else {
-    echo "<p>No images yet.</p>";
+    echo "<p>Uploads folder not found.</p>";
 }
 ?>
-
 </div>
 
 </body>

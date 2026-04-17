@@ -1,35 +1,10 @@
 <?php
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$dbname   = "blossom";
-
-$conn = mysqli_connect($hostname, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+include 'db.php';
+$pageTitle = 'Products';
+include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Products</title>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-</head>
-<body>
-
 <h1>Our Products 🌷</h1>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="products.php">Products</a>
-    <a href="gallery.php">Gallery</a>
-    <a href="contact.php">Contact</a>
-    <a href="login.php">Login</a>
-</nav>
 
 <div class="product-container" style="display: flex; flex-wrap: wrap; gap: 30px; padding: 20px; justify-content: center;">
     
@@ -56,5 +31,4 @@ if (!$conn) {
 
 </div>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

@@ -1,16 +1,7 @@
 <?php
 session_start();
-
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$dbname   = "blossom";
-
-$conn = mysqli_connect($hostname, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+include 'db.php';
+$pageTitle = 'Admin Dashboard';
 
 if(!isset($_SESSION['admin'])){
     header("Location: login.php");
@@ -64,22 +55,9 @@ if(isset($_POST['bulk_delete']) && isset($_POST['delete_id'])){
     $message = "Selected products deleted!";
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-</head>
-<body>
+<?php include 'includes/header.php'; ?>
 
 <h1>Admin Dashboard ⚙️</h1>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="products.php">Products</a>
-</nav>
 
 <div id="admin-dashboard">
     
@@ -278,5 +256,4 @@ if(isset($_POST['bulk_delete']) && isset($_POST['delete_id'])){
     }
 </script>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

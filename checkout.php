@@ -1,5 +1,6 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "blossom");
+include 'db.php';
+$pageTitle = 'Checkout';
 
 if(isset($_GET['id'])) {
     $product_id = $_GET['id'];
@@ -11,28 +12,10 @@ if(isset($_GET['id'])) {
         $product = mysqli_fetch_assoc($result);
     }
 }
+include 'includes/header.php';
 ?>
 
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Checkout</title>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-</head>
-<body>
-
 <h1>Checkout 💳</h1>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="products.php">Products</a>
-    <a href="gallery.php">Gallery</a>
-    <a href="contact.php">Contact</a>
-    <a href="login.php">Login</a>
-</nav>
 
 <p>Proceed to checkout your products. ✅</p>
 
@@ -42,5 +25,4 @@ if(isset($_GET['id'])) {
     <p>Price: Rs.<?php echo $product['price']; ?></p>
 </div>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

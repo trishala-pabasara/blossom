@@ -4,8 +4,10 @@ A simple and realable. e-commerce site.<br>
 Currently the work is in progress. stay tuned.
 
 ### Preview
-
-https://github.com/user-attachments/assets/743dc7c7-7594-4c07-94c3-c7ad204e6e63
+<details>
+  <summary>View Demo</summary>
+  <video src="https://github.com/user-attachments/assets/743dc7c7-7594-4c07-94c3-c7ad204e6e63" controls width="100%"></video>
+</details>
 
 ### Setting Up
 

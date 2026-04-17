@@ -1,12 +1,7 @@
 <?php
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$dbname   = "blossom";
+$conn = new mysqli("localhost", "root", "", "blossom");
 
-$conn = mysqli_connect($hostname, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "blossom");
+include 'db.php';
+$pageTitle = 'Contact Us';
 
 if(isset($_POST['send'])){
     $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -11,26 +12,12 @@ if(isset($_POST['send'])){
         echo "<script>alert('Message Sent!');</script>";
     }
 }
+include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body style="text-align: center;">
+<div style="text-align: center;">
 
 <h1>Contact Us ✉️</h1>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="products.php">Products</a>
-    <a href="gallery.php">Gallery</a>
-    <a href="contact.php">Contact</a>
-    <a href="login.php">Login</a>
-</nav>
 
 <br><br>
 
@@ -46,6 +33,6 @@ if(isset($_POST['send'])){
 
     <button type="submit" name="send">Send</button>
 </form>
+</div>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
